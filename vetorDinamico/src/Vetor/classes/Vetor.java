@@ -70,30 +70,23 @@ public class Vetor<T> implements Lista<T>{
 
     @Override
     public T remover(int posicao) {
-        T[] vetorVar = (T[]) new Object[10];
         T result = null;
-        if (posicao == 0) {
-        	result = vetor[0];
-            this.removerNoInicio();         
+        if (posicao ==0){
+            result = this.removerNoInicio();
         }
         else if (posicao == lastAddPos-1){
-        	result = vetor[lastAddPos-1];
-            this.removerNoFim();
+            result = this.removerNoFim();
         }
-        else if (posicao > 0 && posicao < lastAddPos-1){
-        	result = vetor[posicao];
-        	System.arraycopy(vetor, 0, vetorVar, 0, posicao);
-            for (int i= posicao; i < lastAddPos; i++) {
-                vetorVar[i] = vetor[i+1];
+        else if (posicao < lastAddPos-1){
+            result = vetor[posicao];
+            T[] vetorVar = (T[]) new Object[tamanho];
+            System.arraycopy(vetor, 0, vetorVar, 0, posicao);
+            System.arraycopy(vetor, posicao+1, vetorVar, posicao, lastAddPos);
+            vetor = vetorVar;
+            lastAddPos--;
             }
-        }
-        else {
-            System.out.println("Posica	o invalida");
-        }
-        vetor = vetorVar;
-        lastAddPos --;
         return result;
-    }
+        }
     
 
     @Override
