@@ -170,12 +170,7 @@ public class App {
                     application = 0;
 
             }
-
-
     }
-
-
-
     }
     
 }
